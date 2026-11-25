@@ -1,11 +1,16 @@
-# Office Joke Laugh-Off entry: one deterministic one-liner, written to /output/entry.txt.
-# Standard library only, no network. The bytes are identical on every run.
-import os
+#!/usr/bin/env python3
+"""Write the office joke line to the grader output file — same bytes every run."""
+from pathlib import Path
 
-JOKE = "My boss said we're a family, so I asked HR who gets custody of my weekends."
+LINE = 'My boss said we\'re a family, so I asked HR who gets custody of my weekends.'
 
-OUTPUT_PATH = "/output/entry.txt"
+TARGET = Path('/output/entry.txt')
 
-os.makedirs("/output", exist_ok=True)
-with open(OUTPUT_PATH, "w", encoding="utf-8") as handle:
-    handle.write(JOKE)
+
+def main():
+    TARGET.parent.mkdir(parents=True, exist_ok=True)
+    TARGET.write_text(LINE, encoding='utf-8')
+
+
+if __name__ == '__main__':
+    main()
